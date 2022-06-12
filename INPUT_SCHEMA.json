@@ -1,0 +1,16 @@
+{
+  "title": "Baidu Scraper",
+  "description": "Scraper for Chinese Search Engine Baidu",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchPhrases": {
+      "title": "Search Phrases",
+      "type": "array",
+      "description": "Phrases to search on Baidu",
+      "default": ["Apify"],
+      "editor": "stringList"
+    }
+  },
+  "required": ["searchPhrases"]
+}
