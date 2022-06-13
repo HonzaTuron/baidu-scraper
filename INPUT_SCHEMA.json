@@ -8,7 +8,7 @@
       "title": "Search Phrases",
       "type": "array",
       "description": "Phrases to search on Baidu",
-      "default": ["Apify"],
+      "prefill": ["Apify"],
       "editor": "stringList"
     }
   },
