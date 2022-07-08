@@ -20,7 +20,7 @@ interface DataResults {
 }
 
 Actor.main(async () => {
-  const keyValueStore = await Actor.openKeyValueStore();
+  const dataset = await Actor.openDataset();
 
   const crawler = new PlaywrightCrawler({
     requestHandler: async ({ page }) => {
@@ -78,7 +78,7 @@ Actor.main(async () => {
         relatedSearchKeywords,
       };
 
-      await keyValueStore.setValue("result", dataStructure);
+      await dataset.pushData(dataStructure);
     },
   });
 
