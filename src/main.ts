@@ -20,7 +20,7 @@ interface DataResults {
 }
 
 Actor.main(async () => {
-  const dataset = await Actor.openDataset();
+  const dataset = await Actor.openDataset('default');
 
   const crawler = new PlaywrightCrawler({
     requestHandler: async ({ page }) => {
