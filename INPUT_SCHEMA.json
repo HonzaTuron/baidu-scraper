@@ -10,6 +10,12 @@
       "description": "Phrases to search on Baidu",
       "prefill": ["Apify"],
       "editor": "stringList"
+    },
+    "pages": {
+      "title": "Pages",
+      "type": "integer",
+      "description": "Number of pages to search",
+      "editor": "number"
     }
   },
   "required": ["searchPhrases"]

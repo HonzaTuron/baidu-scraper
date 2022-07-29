@@ -19,8 +19,13 @@ interface DataResults {
   resultsCount?: number;
 }
 
+interface Input {
+  searchPhrases: string[];
+  pages?: number;
+}
+
 Actor.main(async () => {
-  const dataset = await Actor.openDataset('default');
+  const dataset = await Actor.openDataset("default");
 
   const crawler = new PlaywrightCrawler({
     requestHandler: async ({ page }) => {
@@ -82,13 +87,21 @@ Actor.main(async () => {
     },
   });
 
-  const { searchPhrases = ["apify"] } =
-  (await Actor.getInput<{ searchPhrases: string[] }>()) ?? {};
-  await crawler.addRequests(
-    searchPhrases.map(
-      (searchPhrase) =>
-        `https://www.baidu.com/s?wd=${encodeURIComponent(searchPhrase)}`
-    )
+  const { searchPhrases = ["apify"], pages = 0 } =
+    (await Actor.getInput<Input>()) ?? {};
+
+  const pageArray = [...Array(pages + 1).keys()];
+
+  const requests = searchPhrases.flatMap((searchPhrase) =>
+    pageArray.map((pageNr) => {
+      const lookoutQuery = new URLSearchParams([
+        ["wd", searchPhrase],
+        ["pn", pageNr.toString()],
+      ]);
+      return `https://www.baidu.com/s?${lookoutQuery.toString()}`;
+    })
   );
+
+  await crawler.addRequests(requests);
   await crawler.run();
 });
