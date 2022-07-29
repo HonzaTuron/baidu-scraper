@@ -87,16 +87,16 @@ Actor.main(async () => {
     },
   });
 
-  const { searchPhrases = ["apify"], pages = 0 } =
+  const { searchPhrases = ["apify"], pages = 1 } =
     (await Actor.getInput<Input>()) ?? {};
 
-  const pageArray = [...Array(pages + 1).keys()];
+  const pageArray = [...Array(pages).keys()];
 
   const requests = searchPhrases.flatMap((searchPhrase) =>
     pageArray.map((pageNr) => {
       const lookoutQuery = new URLSearchParams([
-        ["wd", searchPhrase],
         ["pn", pageNr.toString()],
+        ["wd", searchPhrase],
       ]);
       return `https://www.baidu.com/s?${lookoutQuery.toString()}`;
     })
