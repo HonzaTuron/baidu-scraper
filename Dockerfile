@@ -4,4 +4,5 @@ RUN npm -v
 COPY . .
 
 RUN npm i
+RUN npx playwright install
 RUN npm run build
