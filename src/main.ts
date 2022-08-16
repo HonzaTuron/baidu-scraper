@@ -1,5 +1,6 @@
 import { resolveBaiduLink, resolveResultsCount } from "@/utils";
-import { KeyValueStore, Dataset, PlaywrightCrawler } from "crawlee";
+import { KeyValueStore, Dataset } from "apify";
+import { PlaywrightCrawler } from "crawlee";
 
 interface Link {
   url: string;
@@ -76,11 +77,11 @@ const crawler = new PlaywrightCrawler({
       relatedSearchKeywords,
     };
 
-    await Dataset.pushData(dataStructure);
+    await Dataset.pushData([dataStructure]);
   },
 });
 
-const { searchPhrases = ["apify"], pages = 1 } =
+const { searchPhrases = ["apify", "nic"], pages = 1 } =
   (await KeyValueStore.getInput<Input>()) ?? {};
 
 const pageArray = [...Array(pages).keys()];

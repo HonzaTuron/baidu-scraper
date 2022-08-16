@@ -17,6 +17,7 @@
   "dependencies": {
     "@apify/tsconfig": "^0.1.0",
     "@crawlee/playwright": "^3.0.3",
+    "apify": "^3.0.2",
     "axios": "^0.27.2",
     "cheerio": "^1.0.0-rc.12",
     "crawlee": "^3.0.3",
