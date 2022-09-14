@@ -1,5 +1,5 @@
 import { resolveBaiduLink, resolveResultsCount } from "@/utils";
-import { KeyValueStore, Dataset } from "apify";
+import { KeyValueStore, Dataset, Actor } from "apify";
 import { PlaywrightCrawler } from "crawlee";
 
 interface Link {
@@ -23,6 +23,8 @@ interface Input {
   searchPhrases: string[];
   pages?: number;
 }
+
+await Actor.init();
 
 const crawler = new PlaywrightCrawler({
   requestHandler: async ({ page }) => {
@@ -98,3 +100,5 @@ const requests = searchPhrases.flatMap((searchPhrase) =>
 
 await crawler.addRequests(requests);
 await crawler.run();
+
+await Actor.exit();
