@@ -53,9 +53,7 @@ Actor.main(async () => {
         hotSearchResults.push({ title, url });
       }
 
-      const relatedKeywordsElements = await page.$$(
-        "div[tpl='recommend_list'] .c-gap-top-xsmall"
-      );
+      const relatedKeywordsElements = await page.$$("div[tpl='recommend_list'] .c-gap-top-xsmall");
       const relatedSearchKeywords: string[] = [];
       for (const relatedKeywordsElement of relatedKeywordsElements) {
         const title = (await relatedKeywordsElement.textContent()) || "";
