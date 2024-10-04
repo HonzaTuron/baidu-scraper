@@ -1,5 +1,7 @@
 # Apify Baidu Scraper
 
+[![Apify Actor](https://beta-securitybyobscurity.apify.com/actor-badge?actor=jan.turon/baidu-scraper)](https://apify.com/jan.turon/baidu-scraper)
+
 Free Scraper for Baidu Search engine. Available [here](https://console.apify.com/actors/eUzzSmb1tYIbQd0Oj) in Apify console
 
 ## Crawled data
